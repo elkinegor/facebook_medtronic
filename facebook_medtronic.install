@@ -1,0 +1,11 @@
+<?php
+/**
+ * Implements hook_uninstall().
+ */
+function facebook_medtronic_uninstall() {
+  // We should delete variables and stuff and things.
+  db_delete('variable')
+    ->condition('name', db_like('facebook_medtronic_') . '%', 'LIKE')
+    ->execute();
+  cache_clear_all('variables', 'cache_bootstrap');
+}
